@@ -40,7 +40,7 @@ const App = () => {
       <PhonebookForm />
       <h2>Contacts</h2>
       <Filter />
-      <ContactList />
+      {items.length > 0 && !isLoading && !error && <ContactList />}
     </div>
   );
 };
