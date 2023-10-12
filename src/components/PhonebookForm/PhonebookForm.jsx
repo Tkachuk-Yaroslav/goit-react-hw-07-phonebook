@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import css from './PhonebookForm.module.css';
-import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/contacts/contactsSlice';
+import { useSelector } from 'react-redux';
+// import { addContact } from 'redux/contacts/contactsSlice';
 import { Notify } from 'notiflix';
 import { nanoid } from '@reduxjs/toolkit';
 
 const PhonebookForm = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const contacts = useSelector(state => state.contacts.items);
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
@@ -38,7 +38,7 @@ const PhonebookForm = () => {
     if (isExistName || isExistNumber) {
       Notify.failure(`${name} is already in contacts`);
     } else {
-      dispatch(addContact({ name, number }));
+      // dispatch(addContact({ name, number }));
       Notify.success(`Contact ${name} successfully created!`);
     }
 
