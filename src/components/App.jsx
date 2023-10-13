@@ -24,9 +24,9 @@ const App = () => {
         outlineOffset: '-20px',
       }}
     >
-      <h1>Phonebook</h1>
+      <h1>&#128222; Phonebook &#128218;</h1>
       <PhonebookForm />
-      <h2>Contacts</h2>
+      <h2>&#128104; Contacts &#128105;</h2>
       <Filter />
       {isLoading && <p>Loading contacts...</p>}
       {error && <p>{error}</p>}
