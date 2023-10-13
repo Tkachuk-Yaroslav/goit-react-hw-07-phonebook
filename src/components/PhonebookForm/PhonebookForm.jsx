@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 // import { addContact } from 'redux/contacts/contactsSlice';
 import { Notify } from 'notiflix';
 import { nanoid } from '@reduxjs/toolkit';
-import { addContact, fetchContacts } from 'redux/contacts/operations';
+import { addContact, fetchContacts } from 'redux/operations';
 
 const PhonebookForm = () => {
   const dispatch = useDispatch();
