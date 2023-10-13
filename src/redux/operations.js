@@ -1,9 +1,4 @@
 import { addOneContact, deleteOneContact, getAllContacts } from 'api/mock-api';
-// import {
-//   fetchingInProgress,
-//   fetchingSuccess,
-//   fetchingError,
-// } from './contactsSlice';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 // export const fetchContacts = () => async dispatch => {
 //   try {

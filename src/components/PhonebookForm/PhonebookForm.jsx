@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
 import css from './PhonebookForm.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-// import { addContact } from 'redux/contacts/contactsSlice';
 import { Notify } from 'notiflix';
 import { nanoid } from '@reduxjs/toolkit';
 import { addContact, fetchContacts } from 'redux/operations';
+import { selectContacts } from 'redux/selectors';
 
 const PhonebookForm = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(state => state.contacts.items);
+  const contacts = useSelector(selectContacts);
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
