@@ -24,12 +24,12 @@ const App = () => {
         outlineOffset: '-20px',
       }}
     >
-      {isLoading && <p>Loading contacts...</p>}
-      {error && <p>{error}</p>}
       <h1>Phonebook</h1>
       <PhonebookForm />
       <h2>Contacts</h2>
       <Filter />
+      {isLoading && <p>Loading contacts...</p>}
+      {error && <p>{error}</p>}
       {items.length > 0 && !error && <ContactList />}
     </div>
   );
