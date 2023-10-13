@@ -1,21 +1,22 @@
 import ContactList from './ContactList/ContactList';
 import PhonebookForm from './PhonebookForm/PhonebookForm';
 import Filter from './Filter/Filter';
-import { useDispatch } from 'react-redux';
-import { useEffect } from 'react';
-import { fetchContacts } from 'redux/operations';
+// import { useDispatch } from 'react-redux';
+// import { useEffect } from 'react';
+// import { fetchContacts } from 'redux/contacts/operations';
 // import Modal from './Modal/Modal';
 
 import { useSelector } from 'react-redux';
+// import { fetchContacts } from 'redux/contacts/contactsSlice';
 //так як використовується redux-rersist, то useEffect не потрібен для зберігання в локал сторедж
 
 const App = () => {
   const { items, isLoading, error } = useSelector(state => state.contacts);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(fetchContacts());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(fetchContacts());
+  // }, [dispatch]);
 
   return (
     <div
@@ -40,7 +41,7 @@ const App = () => {
       <PhonebookForm />
       <h2>Contacts</h2>
       <Filter />
-      {items.length > 0 && !isLoading && !error && <ContactList />}
+      {items.length > 0 && !error && <ContactList />}
     </div>
   );
 };

@@ -8,13 +8,13 @@ export const getAllContacts = async () => {
   return response.data;
 };
 
-export const addContact = async contact => {
+export const addOneContact = async contact => {
   const response = await axios.post('contacts', contact);
   console.log(response.data);
   return response.data;
 };
 
-export const deleteContact = async contactId => {
+export const deleteOneContact = async contactId => {
   const response = await axios.delete(`contacts/${contactId}`);
   console.log(response.data);
   return response.data;

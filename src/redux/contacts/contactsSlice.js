@@ -1,4 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
+import {
+  addContact,
+  deleteContact,
+  fetchContacts,
+} from 'redux/contacts/operations';
 
 const initialState = {
   items: [
@@ -14,30 +19,85 @@ const initialState = {
 export const contactSlice = createSlice({
   name: 'contacts',
   initialState,
-  reducers: {
-    // addContact: (state, action) => {
-    //   state.items.unshift({
-    //     id: nanoid(),
-    //     name: action.payload.name,
-    //     number: action.payload.number,
-    //   });
-    // },
-    // deleteContact: (state, action) => {
-    //   state.items = state.items.filter(el => el.id !== action.payload);
-    // },
-    fetchingInProgress(state) {
-      state.isLoading = true;
-    },
-    fetchingSuccess(state, action) {
-      state.isLoading = false;
-      state.error = null;
-      state.items = action.payload;
-    },
-    fetchingError(state, action) {
-      state.isLoading = false;
-      state.error = action.payload;
-    },
+  extraReducers: builder => {
+    builder
+      .addCase(fetchContacts.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(fetchContacts.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        state.items = action.payload;
+      })
+      .addCase(fetchContacts.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
+      .addCase(addContact.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(addContact.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        state.items = [action.payload, ...state.items];
+      })
+      .addCase(addContact.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
+      .addCase(deleteContact.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(deleteContact.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        state.items = state.items.filter(el => el.id !== action.payload.id);
+      })
+      .addCase(deleteContact.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      });
   },
+  // extraReducers: {
+  //   [fetchContacts.pending](state) {
+  //     state.isLoading = true;
+  //   },
+  // [fetchContacts.fulfilled](state, action) {
+  //   state.isLoading = false;
+  //   state.error = null;
+  //   state.items = action.payload;
+  // },
+  // [fetchContacts.rejected](state, action) {
+  //   state.isLoading = false;
+  //   state.error = action.payload;
+  // },
+  // },
+  //reducers: {
+  //6 дз
+  // addContact: (state, action) => {
+  //   state.items.unshift({
+  //     id: nanoid(),
+  //     name: action.payload.name,
+  //     number: action.payload.number,
+  //   });
+  // },
+  // deleteContact: (state, action) => {
+  //   state.items = state.items.filter(el => el.id !== action.payload);
+  // },
+  //7 дз без креейт асинк санк
+  // fetchingInProgress(state) {
+  //   state.isLoading = true;
+  // },
+  // fetchingSuccess(state, action) {
+  // state.isLoading = false;
+  // state.error = null;
+  // state.items = action.payload;
+  // },
+  // fetchingError(state, action) {
+  // state.isLoading = false;
+  // state.error = action.payload;
+  // },
+  //},
 });
 // export const { addContact, deleteContact } = contactSlice.actions;
 export const { fetchingInProgress, fetchingSuccess, fetchingError } =
